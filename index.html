@@ -1,12 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+<html lang="en>">
+    <head>
+        <title></title>
+        <style>
+
+            body {
+                background-color: #E6E6FA;
+              
+            }
+            button{
+                font-size: 2cm;
+                margin: 25px 30px;
+                color: #F8F8FF;
+                background-color: gray;
+                border-radius: 30px;
+                padding: 10px 20px;
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            .textline {
+                width: 30%;
+                padding: 20px 30px;
+                margin: 15px 28px;
+                box-sizing: border-box;
+                border-radius: 30px;
+                background-color: #F0F8FF;
+            }
+            .TextShow{
+                font-size: 2cm;
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                color:#DC143C;
+
+            }
+            h1{
+                font-size: 2cm;
+                text-align: center;
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                color: black;
+                
+            }
+            
+
+
+        </style>
+    </head>
+    <body>
+
+        <h1> Chat</h1>
+        <ul></ul>
+        <center><form id="form" action  ="">
+            <input class="textline" id="input" /><button onclick="myFunction()"> ส่ง</button>
+        </form>
+        <div id="TextShow" class="TextShow"></div></center>
+
+        <script>
+        function myFunction() {
+          var x = document.getElementById("TextShow");
+          if (x.innerHTML === "") {
+            x.innerHTML = input.value;
+          } else {
+            x.innerHTML = input.value;
+          }
+        }
+        </script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io(); 
+
+            var form = document.getElementById("form");
+            var input = document.getElementById("input");
+
+            form.addEventListener('submit',function(e) {
+                e.preventDefault();
+                if (input.value) {
+                    socket.emit('chat message', input.value);
+                    input.value = '';
+                }
+            } );
+
+        </script>
+    </body>
 </html>
